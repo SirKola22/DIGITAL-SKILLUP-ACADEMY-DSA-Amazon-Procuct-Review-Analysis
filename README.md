@@ -20,6 +20,10 @@ The dataset contains information scraped from Amazon product pages. It includes:
 
 Each row represents a **unique product**, and aggregated reviewer data is stored in **comma-separated values**.
 
+## Steps Taken
+First, i started cleaning the data by removing the duplicates on product id using **remove duplicate** under the data tool group
+Secondly, i counted the blanks on the dataset by using the **countblank function** to kow the number of blank cells in the dataset.
+Due to the length of the data in product category, i used text to **columns function** and then delimeter to split the column into four separate columns apart from the major category in the dataset. 
 ---
 
 ##  Analysis Tasks & Key Insights
@@ -61,6 +65,21 @@ Using **Excel Pivot Tables, Calculated Columns, and Filters**, I performed the f
   - Above ₹500  
 
 ---
+
+## Excel Functions Used
+Average Discount
+=([@[Actual Price]]-[@[discounted_price]])*100
+
+Price Range Bucket
+=IF(I2<200,"<₹200",IF(OR(I2=200,I2<=500),"₹200 - ₹500",">₹500"))
+
+=IF([@[discount_percentage]>=50%,"YES","NO")
+
+Discount Range
+=IF([@[discount_percentage]]<=10%,"0-10%",IF([@[discount_percentage]]<=20%,"11-20%",IF([@[discount_percentage]]<=30%,"21-30%",IF([@[discount_percentage]]<=40%,"31-40%",IF([@[discount_percentage]]<=50%,"41-50%",IF([@[discount_percentage]]<=60%,"51-60%",IF([@[discount_percentage]]<=70%,"61-70%",IF([@[discount_percentage]]<=80%,"71-80%",IF([@[discount_percentage]]<=90%,"81-90%","91-100%")))))))))
+
+Products With Highest Rating and Review
+=AVERAGE([@rating]+[@[rating_count]]/1000), then sorted using top ten
 
 ##  Files Included
 
